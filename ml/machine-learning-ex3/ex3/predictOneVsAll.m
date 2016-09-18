@@ -28,13 +28,13 @@ X = [ones(m, 1) X];
 %       max element, for more information see 'help max'. If your examples 
 %       are in rows, then, you can use max(A, [], 2) to obtain the max 
 %       for each row.
-%       
+%       k
 
+% multiply theta classes to the x rows (images)  x0*theta0+.. xn*thetan where each elem in the row is a class theta class applied to that original row
+% run sigmoid func on these values to make predictions
+% get the max value index (class #) for each row (image) and assign that to p
 
-
-
-
-
+[mval, p] = max(sigmoid(X * all_theta'), [], 2);
 
 % =========================================================================
 
