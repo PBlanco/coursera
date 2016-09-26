@@ -74,22 +74,28 @@ a2 = [ones(size(a2, 1), 1) a2];
 z3 = a2 * Theta2';
 a3 = sigmoid(z3);
 hyp = a3;
-% [mval, p] = max(hyp, [], 2);
 
 inner = -y_matrix .* log(hyp) - (1 - y_matrix) .* log(1 - hyp);
 regularization = (lambda / (2 * m)) * (sum(sum((Theta1(:,2:end).^2), 2)) + sum(sum((Theta2(:,2:end).^2), 2)));
 J = (1 / m) .* sum(sum(inner, 2)) + regularization;
 
+% Part 2
+d3 = a3 - y_matrix;
+%Notes: remove the bias unit in theta 2. 
+d2 = d3 * Theta2(:, 2:end) .* sigmoidGradient(z2);
+
+D1 = d2' * a1;
+D2 = d3' * a2;
+
+% regularization
+Theta1(:,1) = 0;
+Theta2(:,1) = 0;
+D1_reg = (lambda / m) * Theta1;
+D2_reg = (lambda / m) * Theta2;
 
 
-
-
-
-
-
-
-
-% -------------------------------------------------------------
+Theta1_grad = (1 / m) * D1 + D1_reg; 
+Theta2_grad = (1 / m) * D2 + D2_reg;
 
 % =========================================================================
 
