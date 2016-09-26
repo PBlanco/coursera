@@ -63,13 +63,22 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 
+% Part 1
+y_matrix = eye(num_labels)(y,:); %Col = output class if 1 [ 0 0 1] would be class 3, %row = training examples
 
+a1 = [ones(m, 1) X];
+z2 = a1 * Theta1';
+a2 = sigmoid(z2);
+a2 = [ones(size(a2, 1), 1) a2];
 
+z3 = a2 * Theta2';
+a3 = sigmoid(z3);
+hyp = a3;
+% [mval, p] = max(hyp, [], 2);
 
+inner = -y_matrix .* log(hyp) - (1 - y_matrix) .* log(1 - hyp);
 
-
-
-
+J = (1 / m) .* sum(sum(inner, 2));% + (lambda / (2 * m)) * sum(theta(2:end).^2);
 
 
 
