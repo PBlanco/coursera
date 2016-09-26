@@ -77,8 +77,8 @@ hyp = a3;
 % [mval, p] = max(hyp, [], 2);
 
 inner = -y_matrix .* log(hyp) - (1 - y_matrix) .* log(1 - hyp);
-
-J = (1 / m) .* sum(sum(inner, 2));% + (lambda / (2 * m)) * sum(theta(2:end).^2);
+regularization = (lambda / (2 * m)) * (sum(sum((Theta1(:,2:end).^2), 2)) + sum(sum((Theta2(:,2:end).^2), 2)));
+J = (1 / m) .* sum(sum(inner, 2)) + regularization;
 
 
 
