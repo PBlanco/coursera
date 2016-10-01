@@ -39,14 +39,21 @@ error_val = zeros(length(lambda_vec), 1);
 %
 %
 
+for i = 1:length(lambda_vec)
+    lambda = lambda_vec(i);
+    [theta] = trainLinearReg(X, y, lambda);
 
+    [J, grad] = linearRegCostFunction(X, y, theta, 0);
+    [Jval, gradval] = linearRegCostFunction(Xval, yval, theta, 0);
 
+    error_train(i) = J;
+    error_val(i) = Jval;
 
+end
 
-
-
-
-
+[min_lam, ind] = min(error_val');
+fprintf('Min Lambra trianing error\n');
+fprintf('Error=%f\tLambda=%f\t\n', min_lam, lambda_vec(ind));
 
 % =========================================================================
 
