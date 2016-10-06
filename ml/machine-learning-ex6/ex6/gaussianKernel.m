@@ -7,19 +7,16 @@ function sim = gaussianKernel(x1, x2, sigma)
 x1 = x1(:); x2 = x2(:);
 
 % You need to return the following variables correctly.
-sim = 0;
+% sim = 0;
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Fill in this function to return the similarity between x1
 %               and x2 computed using a Gaussian kernel with bandwidth
 %               sigma
 %
-%
-
-
-
-
-
+numerator = (x1 - x2)' * (x1 - x2);
+denominator = 2 * sigma^2;
+sim = exp(-numerator / denominator);
 
 % =============================================================
     
