@@ -21,9 +21,17 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
+for i = 1:size(X,1)
+    min_err = realmax;
+    for j = 1:K;
+        x = X(i,:)'; 
+        u = centroids(j,:)';
+        cst = (x - u)' * (x - u);
+        if cst < min_err
+            min_err = cst;
+            idx(i) = j;
+    end
+end
 
 
 
