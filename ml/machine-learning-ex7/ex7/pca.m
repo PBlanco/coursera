@@ -20,8 +20,8 @@ S = zeros(n);
 %       number of examples).
 %
 
-
-
+sig =  (X' * X) / m;
+[U, S, V] = svd(sig);
 
 
 
