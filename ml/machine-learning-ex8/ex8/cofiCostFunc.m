@@ -13,8 +13,8 @@ Theta = reshape(params(num_movies*num_features+1:end), ...
 
             
 % You need to return the following values correctly
-J = 0;
-X_grad = zeros(size(X));
+% J = 0;
+% X_grad = zeros(size(X));
 Theta_grad = zeros(size(Theta));
 
 % ====================== YOUR CODE HERE ======================
@@ -41,19 +41,17 @@ Theta_grad = zeros(size(Theta));
 %
 
 
+% Implement cost funct wihtout 
+regul = (lambda / 2) * sum(sum(Theta.^2)) + (lambda / 2) * sum(sum(X.^2));
+J = (1/2) .* sum(sum((((X * Theta') - Y).^2) .* R)) + regul;
 
+% implement gradient and use checkCostFunction to check grad is correct
+tmp = ((X * Theta') - Y) .* R;
 
+X_grad = (tmp * Theta) + (lambda * X);
+Theta_grad = (tmp' * X) + (lambda * Theta);
 
-
-
-
-
-
-
-
-
-
-
+% Go back and implement reg for cost function
 
 % =============================================================
 
