@@ -47,10 +47,11 @@ public class TxHandler {
     			}
     			
     			// each input must be signed with the signature of its corresponding spent output
-            if (!Crypto.verifySignature(spenderOutput.address, tx.getRawDataToSign(i), input.signature)) {
-            		return false;
-            }
-            // add utxo value to total input value
+    			if (!Crypto.verifySignature(spenderOutput.address, tx.getRawDataToSign(i), input.signature)) {
+    				return false;
+    			}
+    			
+    			// add utxo value to total input value 
     			totalInputSum += spenderOutput.value;
     			// mark utxo as spent
     			spentUtxoPool.addUTXO(spenderUtxo, spenderOutput);
